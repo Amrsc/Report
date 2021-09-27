@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "ListQuery";
+    Layout = "~/Views/Shared/_LayoutAd.cshtml";
+}
+
+@using Report.Models
+@model List<Report.Models.Query>
+<h3 class="alert-danger">@TempData["ok"]</h3>
+
+<h2>Liste des Requetes de selection :</h2>
+<style>
+    h2 {
+        font-size: 24px;
+        text-transform: uppercase;
+        color: #303030;
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+</style>
+<table class="table">
+    <tr>
+        <th>
+            id
+        </th>
+        <th>
+            Nom Requête
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomQuery)
+            </td>
+            <td>
+                @Html.ActionLink("Supprimer", "Delete", new { CatId = item.id })
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@Html.DisplayFor(modelItem => item.id)">Mettre à jour</button>
+
+            </td>
+        </tr>
+        <tr>
+            <div class="modal fade" id="@Html.DisplayFor(modelItem => item.id)" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <br />
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Mettre a jour la requete</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <form action="~/Etat/UpdateQuery" method="post">
+                                    <p>Requete actuelle : <br /> @Html.DisplayFor(modelItem => item.query)</p> <br />
+                                    <p class="">
+                                        <input type="hidden" name="id" value="@Html.DisplayFor(modelItem => item.id)" />
+                                        <label for="nom"><strong>Requete</strong></label>
+                                        <textarea name="q" style="width : 350px; height : 250 px;" required></textarea>
+                                    </p>
+                                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </tr>
+    }
+</table>
+
+
+

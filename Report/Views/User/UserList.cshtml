@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAd.cshtml";
+}
+@model List<Report.Models.Utilisateur>
+<h3 class="alert-success">@TempData["pok"]</h3>
+<h3 class="alert-danger">@TempData["ok"]</h3>
+
+<h2>Liste des utilisateurs :</h2>
+<style>
+    h2 {
+        font-size: 24px;
+        text-transform: uppercase;
+        color: #303030;
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+</style>
+<table class="table">
+    <tr>
+        <th>
+            Identifiant utilisateur
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pseudo)
+            </td>
+            <td>
+                    @Html.ActionLink("Activité", "UserProf", new { id = item.id }) |
+                    @Html.ActionLink("Privilège", "UserPrivilege", new { id = item.id }) |
+                    @Html.ActionLink("Supprimer", "UserDel", new { id = item.id })
+                
+            </td>
+        </tr>
+}
+    </table>

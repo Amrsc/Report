@@ -1,0 +1,10 @@
+﻿<ul class="nav navbar-nav navbar-right">
+    @if (Session["pseudo_user"] == null)
+    {
+        <li>@Html.ActionLink("Admin", "Login")</li>
+    }
+    @if (Session["pseudo_user"] != null)
+    {
+    }
+
+</ul>

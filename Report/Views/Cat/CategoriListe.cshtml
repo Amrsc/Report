@@ -1,0 +1,64 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAd.cshtml";
+}
+@using Report.Models
+@model List<Report.Models.Cat>
+<h2>Créer une catégorie :</h2>
+<h3 class="alert-success">@TempData["ok"]</h3>
+<h3 class="alert-danger">@TempData["eok"]</h3>
+<form action="~/Cat/CategoriNew" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" name="NomCat" class="form-control" placeholder="Nom de la catégorie ..." required>
+        </div>
+        <div class="col-md-5">
+            @foreach (var std in TempData["lprof"] as IList<profile>)
+            {
+                <input type="radio" id="@std.idProf" name="p" value="@std.idProf" required>
+                <label for="@std.idProf">@std.profil</label>
+            }
+        </div>
+        <div class="col-md-1">
+            <button type="submit" class="form-control">Créer</button>
+        </div>
+
+    </div>
+</form>
+<h2>Liste des Categories :</h2>
+<style>
+    h2 {
+        font-size: 24px;
+        text-transform: uppercase;
+        color: #303030;
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+</style>
+<table class="table">
+    <tr>
+        <th>
+            Activité
+        </th>
+        <th>
+            Nom Catégorie
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.prof)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomCat)
+            </td>
+            <td>
+                @Html.ActionLink("Supprimer", "Delete", new { CatId = item.CatId })
+            </td>
+        </tr>
+    }
+</table>
+

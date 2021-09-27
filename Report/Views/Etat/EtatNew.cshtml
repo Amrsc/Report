@@ -1,0 +1,140 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAd.cshtml";
+}
+@model List<Report.Models.Cat>
+<div >
+    <div class="text-success" role="alert">
+        @TempData["ok"]
+    </div>
+    <form action="~/Etat/EtatNew" method="post">
+        <legend class="text-primary bg-warning">Enregistrement d'un nouveau Rapport dans la base de recherche du portail </legend>
+        <div class="form-group row">
+            <label for="1" class="col-sm-2 col-form-label">Nom de l'état :</label>
+            <div class="col-sm-10">
+                <input type="text" name="NomEtat" class="form-control" id="1" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="2" class="col-sm-2 col-form-label">Description de l'état</label>
+            <div class="col-sm-10">
+                <input name="DesEtat" class="form-control" id="2" required>
+            </div>
+        </div>
+        <div class="bg-info">
+            <div class="form-group row">
+                <span class="col-md-5"></span>
+                <h4 class="text-center">Paramètre de l'état :</h4>
+                <span class="col-md-5"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-1"></div>
+                <label for="3" class="col-sm-2 col-form-label">Nom du paramètre :</label>
+                <div class="col-sm-3">
+                    <input type="text" name="np1" class="form-control" id="3">
+                </div>
+                <label for="3" class="col-sm-2 col-form-label">Type du paramètre :</label>
+                <div class="col-sm-3">
+                    <select name="tp1" class="form-control" id="3">
+                        <option value="text">Text</option>
+                        <option value="date">Date</option>
+                        <option value="text">Nombre</option>
+                        <option value="actor">Client</option>
+                        <option value="dos">Dossier</option>
+                        <option value="doscbmim">Dossier CBMIM</option>
+                    </select>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-1"></div>
+                <label for="3" class="col-sm-2 col-form-label">Nom du paramètre :</label>
+                <div class="col-sm-3">
+                    <input type="text" name="np2" class="form-control" id="4">
+                </div>
+                <label for="3" class="col-sm-2 col-form-label">Type du paramètre :</label>
+                <div class="col-sm-3">
+                    <select name="tp2" class="form-control" id="4">
+                        <option value="text">Text</option>
+                        <option value="date">Date</option>
+                        <option value="text">Nombre</option>
+                        <option value="actor">Client</option>
+                        <option value="dos">Dossier</option>
+                        <option value="doscbmim">Dossier CBMIM</option>
+                    </select>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-1"></div>
+                <label for="3" class="col-sm-2 col-form-label">Nom du paramètre :</label>
+                <div class="col-sm-3">
+                    <input type="text" name="np3" class="form-control" id="5">
+                </div>
+                <label for="3" class="col-sm-2 col-form-label">Type du paramètre :</label>
+                <div class="col-sm-3">
+                    <select name="tp3" class="form-control" id="5">
+                        <option value="text">Text</option>
+                        <option value="date">Date</option>
+                        <option value="text">Nombre</option>
+                        <option value="actor">Client</option>
+                        <option value="dos">Dossier</option>
+                        <option value="doscbmim">Dossier CBMIM</option>
+                    </select>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-1"></div>
+                <label for="3" class="col-sm-2 col-form-label">Nom du paramètre :</label>
+                <div class="col-sm-3">
+                    <input type="text" name="np4" class="form-control" id="6">
+                </div>
+                <label for="3" class="col-sm-2 col-form-label">Type du paramètre :</label>
+                <div class="col-sm-3">
+                    <select name="tp4" class="form-control" id="6">
+
+                        <option value="text">Text</option>
+                        <option value="date">Date</option>
+                        <option value="text">Nombre</option>
+                        <option value="actor">Client</option>
+                        <option value="dos">Dossier</option>
+                        <option value="doscbmim">Dossier CBMIM</option>
+                    </select>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <br>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label for="9" class="col-sm-2 col-form-label">Catégorie :</label>
+            <div class="col-sm-10">
+                <select name="Cat" class="form-control" id="9" required>
+                    @foreach (var item in Model)
+                    {
+                    <option value="@Html.DisplayFor(modelItem => item.CatId)">@Html.DisplayFor(modelItem => item.NomCat)</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <input type="checkbox" name="commun" value="1" />
+            <label for="10" class="col-form-label">Commun à tous les services (disponible pour toutes les activité) </label>
+
+        </div>
+        <div class="form-group row">
+            <span class="col-md-5"></span>
+            <button class="btn btn-primary mb-2">Enregistrer</button>
+            <span class="col-md-5"></span>
+        </div>
+    </form>
+
+</div>
+<script>
+    function ok() {
+        var x = document.getElementById("2").value;
+        alert(x);
+    }
+</script>

@@ -1,0 +1,90 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAd.cshtml";
+}
+@model List<Report.Models.profile>
+<h2>Créer un utilisateur :</h2>
+<h3 class="alert-danger">@TempData["ok"]</h3>
+<h4 class="text-success"> @TempData["msg"]</h4>
+<div class="row">
+    <div class="col-md-3"></div>
+    <form action="~/User/UserNew" method="post" class="col-md-6">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Iidentifiant de l'utilisateur</label>
+            <input type="text" name="pseudo" id="exampleInputEmail1" class="form-control" placeholder="Identifiant ..." aria-describedby="emailHelp" required>
+            <small id="emailHelp" class="form-text text-muted">Saisir l'identifiant de l'utilisateur</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Mot de passe </label>
+            <input type="password" name="pwd" class="form-control" placeholder="Mot de passe ..."  autocomplete="off" required>
+        </div>
+        <div class="form-check">
+            @foreach (var item in Model)
+            {
+                <input type="radio" class="form-check-input" name="cat" value="@Html.DisplayFor(modelItem => item.idProf)" required>
+                <label class="form-check-label">@Html.DisplayFor(modelItem => item.profil)</label> <BR />
+            }
+        </div>
+        <button type="submit" class="form-control" style="background-color : dodgerblue">Créer</button>
+        <br />
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Créer ou supprimer une Activité </button>
+
+    </form>
+    <div class="col-md-3"></div>
+</div>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <br />
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Creer ou supprimer une Activité</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <form action="~/User/AddProfile" method="post">
+                            <p class="span6">
+                                <label for="nom"><strong>Nom Activité</strong></label>
+                                <input type="text" name="nom" id="nom" required />
+                            </p>
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <form action="~/User/delProfile" method="post">
+                            <p class="span6">
+                                @foreach (var item in Model)
+                                {
+                                    <input type="radio" class="form-check-input" name="nom" value="@Html.DisplayFor(modelItem => item.profil)" required>
+                                    <label class="form-check-label">@Html.DisplayFor(modelItem => item.profil)</label>
+                                }
+                            </p>
+                            <button type="submit" class="btn btn-primary">Supprimer</button>
+                        </form>
+                    </div>   
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+<style>
+    h2 {
+        font-size: 24px;
+        text-transform: uppercase;
+        color: #303030;
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+</style>
